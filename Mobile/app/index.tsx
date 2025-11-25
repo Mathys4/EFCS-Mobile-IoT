@@ -1,4 +1,5 @@
-import { Text, View } from "react-native";
+import { FlatList, View } from "react-native";
+import PlayerCard from "./components/playerCard";
 
 export default function Index() {
   return (
@@ -9,7 +10,13 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
+      <FlatList
+        data={["a","b","c"]}
+        renderItem={({item : player}) => 
+            <View>
+              <PlayerCard name={player}></PlayerCard>
+            </View>
+        }/>
     </View>
   );
 }
