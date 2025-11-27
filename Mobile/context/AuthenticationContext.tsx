@@ -37,12 +37,6 @@ export function AuthenticationContextProvider({ children } : { children: React.R
         
     const register = async (email:string, password:string, name: string, lastName: string) => {
        await createUserWithEmailAndPassword(auth, email, password).then((userCreds) => {
-            const pokemons: DeckPokemon[] = []
-            setDoc(doc(db, "users", userCreds.user.uid), {
-                name: name,
-                lastName: lastName,
-                pokemons: pokemons
-            });
             AsyncStorage.setItem("avatar-"+userCreds.user.uid, defaultAvatar);
             goToIndex();
        }).catch(error => {
@@ -92,7 +86,7 @@ export function AuthenticationContextProvider({ children } : { children: React.R
     }
 
     return ( 
-        <AuthenticationContext.Provider value={{ isAuthenticated, register, login, logout }}>
+        <AuthenticationContext.Provider value={{ isAuthenticated, register, login, logout, updateUserPassword }}>
             {children}
         </AuthenticationContext.Provider>
     )
