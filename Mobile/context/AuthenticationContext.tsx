@@ -24,7 +24,6 @@ export function AuthenticationContextProvider({ children } : { children: React.R
     useEffect(() => {
         const unsub = onAuthStateChanged(auth, (user) => {
             if (user) {
-                console.log("called")
                 getUserCreds(user.uid);
                 setIsAuthenticated(true);
             } else {

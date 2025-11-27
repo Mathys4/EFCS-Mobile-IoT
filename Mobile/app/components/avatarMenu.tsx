@@ -11,13 +11,14 @@ import {
 } from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useAuth } from "@/hooks/useAuth";
+import { useUserContext } from "@/hooks/useUser";
 
 export default function AvatarMenu() {
   const [open, setOpen] = useState(false);
-  const { logout, avatar } = useAuth();
+  const { logout } = useAuth();
+  const { profileImage } = useUserContext();
   const menuItems = [
-    { label: "Deck", href: "/" },
-    { label: "Profil", href: "/profil" },
+    { label: "Home", href: "/" },
   ];
   function logoutMenu(): void {
     setOpen(false);
@@ -25,12 +26,12 @@ export default function AvatarMenu() {
   }
   return (
     <View style={styles.container}>
-      <Link href="/homeScreen" asChild>
+      <Link href="/" asChild>
         <FontAwesome size={40} name="home" />
       </Link>
       <TouchableOpacity onPress={() => setOpen(!open)}>
         <Image
-          source={{ uri: avatar}}
+          source={{ uri: profileImage}}
           style={styles.avatarImage}
         />
       </TouchableOpacity>

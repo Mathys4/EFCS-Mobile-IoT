@@ -1,7 +1,15 @@
 import { FlatList, View } from "react-native";
 import PlayerCard from "./components/playerCard";
+import { useUserContext } from "@/hooks/useUser";
+import { useEffect } from "react";
 
 export default function Index() {
+  const {getAllUsers} = useUserContext()
+
+  useEffect(()=>{
+    getAllUsers()
+  }, [])
+
   return (
     <View
       style={{
